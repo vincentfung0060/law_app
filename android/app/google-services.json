@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "712681179527",
+    "firebase_url": "https://lawconsultation-27354.firebaseio.com",
+    "project_id": "lawconsultation-27354",
+    "storage_bucket": "lawconsultation-27354.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712681179527:android:027de2e10e61900d",
+        "android_client_info": {
+          "package_name": "com.example.law_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712681179527-84n6ckpubd9j2i8mau39342jo0gefreb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAujcOe1QBvnAibaW2nAn6JG0x7i3Z0oIQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
