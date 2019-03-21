@@ -12,4 +12,13 @@ class Law {
     this.content,
     this.imageURL
   });
+
+  Law.fromMap(Map<String, dynamic> data, String id)
+      : this(
+          id: id,
+          name: data['name'],    
+          subTitle: new List<String>.from(data['subTitle']),
+          content: new List<String>.from(data['content']),
+          imageURL: data['image'],
+        );
 }

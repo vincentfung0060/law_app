@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:law_app/model/law.dart';
 import 'package:law_app/model/state.dart';
@@ -13,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   StateModel appState;
-  List<Law> laws = getLawsContent();
-  List<String> userFavorites = getFavoritesIDs();
 
   DefaultTabController _buildTabView({Widget body}) {
     const double _iconSize = 20.0;
@@ -66,20 +65,36 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   TabBarView _buildTabsContent() {
-    Padding _buildLaws(List<Law> lawList) {
+    Padding _buildLaws({List<String> ids}) {
+      CollectionReference collectionReference =
+          Firestore.instance.collection('laws');
+      Stream<QuerySnapshot> stream;
+      stream = collectionReference.snapshots();
+      // Define query depeneding on passed args
       return Padding(
         // Padding before and after the list view:
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: Column(
           children: <Widget>[
             Expanded(
-              child: ListView.builder(
-                itemCount: lawList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return new LawCard(
-                    law: lawList[index],
-                    inFavorites: userFavorites.contains(lawList[index].id),
-                    onFavoriteButtonPressed: _handleFavoritesListChanged,
+              child: new StreamBuilder(
+                stream: stream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) return _buildLoadingIndicator();
+                  return new ListView(
+                    children: snapshot.data.documents
+                        // Check if the argument ids contains document ID if ids has been passed:
+                        .where((d) => ids == null || ids.contains(d.documentID))
+                        .map((document) {
+                      return new LawCard(
+                        law:
+                            Law.fromMap(document.data, document.documentID),
+                        inFavorites:
+                            appState.favorites.contains(document.documentID),
+                        onFavoriteButtonPressed: _handleFavoritesListChanged,
+                      );
+                    }).toList(),
                   );
                 },
               ),
@@ -91,10 +106,8 @@ class HomeScreenState extends State<HomeScreen> {
 
     return TabBarView(
       children: [
-        _buildLaws(laws),
-        _buildLaws(laws
-            .where((recipe) => userFavorites.contains(recipe.id))
-            .toList()),
+        _buildLaws(),
+        _buildLaws(ids: appState.favorites),
         Center(child: Icon(Icons.settings)),
       ],
     );
@@ -103,11 +116,15 @@ class HomeScreenState extends State<HomeScreen> {
   // Inactive widgets are going to call this method to
   // signalize the parent widget HomeScreen to refresh the list view:
   void _handleFavoritesListChanged(String recipeID) {
-    setState(() {
-      if (userFavorites.contains(recipeID)) {
-        userFavorites.remove(recipeID);
-      } else {
-        userFavorites.add(recipeID);
+    updateFavorites(appState.user.uid, recipeID).then((result) {
+      // Update the state:
+      if (result == true) {
+        setState(() {
+          if (!appState.favorites.contains(recipeID))
+            appState.favorites.add(recipeID);
+          else
+            appState.favorites.remove(recipeID);
+        });
       }
     });
   }
