@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:law_app/model/law.dart';
+import 'package:law_app/ui/screens/detail.dart';
+import 'package:law_app/ui/widgets/law_image.dart';
 
 class LawCard extends StatelessWidget {
   final Law law;
@@ -47,7 +49,12 @@ class LawCard extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => print("Tapped!"),
+      onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => new DetailScreen(law, inFavorites),
+            ),
+          ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         child: Card(
@@ -59,13 +66,7 @@ class LawCard extends StatelessWidget {
               // creating a Stack object:
               Stack(
                 children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 16.0 / 9.0,
-                    child: Image.network(
-                      law.imageURL,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  LawImage(law.imageURL),
                   Positioned(
                     child: _buildFavoriteButton(),
                     top: 2.0,

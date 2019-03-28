@@ -85,6 +85,18 @@ Future<List<String>> getFavorites() async {
     });
   }
 
+  Future<Null> signOutOfGoogle() async {
+    // Sign out from Firebase and Google
+    await FirebaseAuth.instance.signOut();
+    await googleSignIn.signOut();
+    // Clear variables
+    googleAccount = null;
+    state.user = null;
+    setState(() {
+      state = StateModel(user: null);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new _StateDataWidget(

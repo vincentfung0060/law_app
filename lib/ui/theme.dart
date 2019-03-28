@@ -30,7 +30,6 @@ ThemeData buildTheme() {
   // And apply changes on it:
   return base.copyWith(
     textTheme: _buildTextTheme(base.textTheme),
-    // New code:
     primaryColor: const Color(0xFFFFF8E1),
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
@@ -40,5 +39,11 @@ ThemeData buildTheme() {
       size: 20.0,
     ),
     buttonColor: Colors.white,
+    // New:
+    backgroundColor: Colors.white,
+    tabBarTheme: base.tabBarTheme.copyWith(
+      labelColor: const Color(0xFF807A6B),
+      unselectedLabelColor: const Color(0xFFCCC5AF),
+    )
   );
 }

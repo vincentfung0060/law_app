@@ -5,6 +5,7 @@ import 'package:law_app/model/state.dart';
 import 'package:law_app/state_widget.dart';
 import 'package:law_app/ui/screens/login.dart';
 import 'package:law_app/ui/widgets/law_card.dart';
+import 'package:law_app/ui/widgets/settings_button.dart';
 import 'package:law_app/utils/store.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -108,11 +109,27 @@ class HomeScreenState extends State<HomeScreen> {
       children: [
         _buildLaws(),
         _buildLaws(ids: appState.favorites),
-        Center(child: Icon(Icons.settings)),
+        _buildSettings(),
       ],
     );
   }
 
+Column _buildSettings() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SettingsButton(
+          Icons.exit_to_app,
+          "Log out",
+          appState.user.displayName,
+          () async {
+            await StateWidget.of(context).signOutOfGoogle();
+          },
+        ),
+      ],
+    );
+  }
+  
   // Inactive widgets are going to call this method to
   // signalize the parent widget HomeScreen to refresh the list view:
   void _handleFavoritesListChanged(String recipeID) {
