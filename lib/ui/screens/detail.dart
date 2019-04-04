@@ -37,29 +37,95 @@ class IngredientsView extends StatelessWidget {
     );
   }
 }
+class ContentView extends StatefulWidget {
+  final List<String> subTitle;
+  final List<String> content;
 
-class ContentView extends StatelessWidget {
-  final List<String> contents;
-
-  ContentView(this.contents);
-
+  ContentView(this.subTitle,this.content);
   @override
-  Widget build(BuildContext context) {
-    List<Widget> textElements = List<Widget>();
-    contents.forEach((item) {
+  _ContentViewState createState()=>_ContentViewState();
+}
+class _ContentViewState extends State<ContentView> {
+    List<Widget> _content = [];
+
+List<Widget> initDetails()
+{
+List<Widget> textElements = List<Widget>();
+    widget.subTitle.forEach((item) {
       textElements.add(
-        Text(item),
+        GestureDetector(
+        onTap: () {
+        List<String> tempContentList = new List();
+        tempContentList.add(widget.content[widget.subTitle.indexOf(item)]);
+          setState((){
+          _content = getUpdatedDetails(widget.subTitle.indexOf(item));
+        });
+  },
+  child: Text(
+    item,
+  style: TextStyle(
+    fontFamily: 'Merriweather',
+    fontSize: 15.0,
+    color: const Color(0xFF807A6B),
+    decoration: TextDecoration.underline,
+  ),
+  ),
+),
+        
       );
       // Add spacing between the lines:
       textElements.add(
         SizedBox(
-          height: 10.0,
+          height: 20.0,
         ),
       );
     });
+    return textElements;
+}
+
+List<Widget> getUpdatedDetails(position)
+{
+  List<Widget> textElements = List<Widget>();
+  //Add the back button
+  textElements.add(
+        GestureDetector(
+        onTap: () {
+          setState((){
+          _content = initDetails();
+        });
+  },
+  child: Text(
+    "back",
+    style: Theme.of(context).textTheme.display1,
+    ),
+),
+        
+      );
+      textElements.add(
+        SizedBox(
+          height: 20.0,
+        ),
+      );
+
+  textElements.add(
+    Text(
+    widget.content[position],
+    )
+  );
+      return textElements;
+}
+
+  @override
+  void initState() {
+    super.initState();
+    _content = initDetails();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 75.0),
-      children: textElements,
+      children: _content,
     );
   }
 }
@@ -134,25 +200,25 @@ class _DetailScreenState extends State<DetailScreen>
         },
         body: TabBarView(
           children: <Widget>[
-            ContentView(widget.law.content),
+            new ContentView(widget.law.subTitle, widget.law.content),
           ],
           controller: _tabController,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          updateFavorites(appState.user.uid, widget.law.id).then((result) {
-            // Toggle "in favorites" if the result was successful.
-            if (result) _toggleInFavorites();
-          });
-        },
-        child: Icon(
-          _inFavorites ? Icons.favorite : Icons.favorite_border,
-          color: Theme.of(context).iconTheme.color,
-        ),
-        elevation: 2.0,
-        backgroundColor: Colors.white,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     updateFavorites(appState.user.uid, widget.law.id).then((result) {
+      //       // Toggle "in favorites" if the result was successful.
+      //       if (result) _toggleInFavorites();
+      //     });
+      //   },
+      //   child: Icon(
+      //     _inFavorites ? Icons.favorite : Icons.favorite_border,
+      //     color: Theme.of(context).iconTheme.color,
+      //   ),
+      //   elevation: 2.0,
+      //   backgroundColor: Colors.white,
+      // ),
     );
   }
 }

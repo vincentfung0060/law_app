@@ -8,18 +8,20 @@ ThemeData buildTheme() {
       headline: base.headline.copyWith(
         fontFamily: 'Merriweather',
         fontSize: 40.0,
-        color: const Color(0xFF807A6B),
+        color: const Color(0xFFFFFFFF),
       ),
       // New code:
-      // Used for the recipes' title:
+      // Used for the laws' title:
       title: base.title.copyWith(
         fontFamily: 'Merriweather',
         fontSize: 15.0,
         color: const Color(0xFF807A6B),
       ),
-      // Used for the recipes' duration:
-      caption: base.caption.copyWith(
-        color: const Color(0xFFCCC5AF),
+      display1: base.display1.copyWith(
+        fontFamily: 'Merriweather',
+        fontSize: 15.0,
+        color: const Color(0xFF807A6B),
+        decoration: TextDecoration.underline,
       ),
     );
   }
