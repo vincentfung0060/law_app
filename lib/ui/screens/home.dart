@@ -31,7 +31,7 @@ class HomeScreenState extends State<HomeScreen> {
               labelColor: Theme.of(context).indicatorColor,
               tabs: [
                 Tab(icon: Icon(Icons.apps, size: _iconSize)),
-                Tab(icon: Icon(Icons.favorite, size: _iconSize)),
+                // Tab(icon: Icon(Icons.favorite, size: _iconSize)),
                 Tab(icon: Icon(Icons.settings, size: _iconSize)),
               ],
             ),  
@@ -108,7 +108,7 @@ class HomeScreenState extends State<HomeScreen> {
     return TabBarView(
       children: [
         _buildLaws(),
-        _buildLaws(ids: appState.favorites),
+        // _buildLaws(ids: appState.favorites),
         _buildSettings(),
       ],
     );

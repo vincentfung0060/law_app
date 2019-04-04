@@ -63,7 +63,12 @@ List<Widget> textElements = List<Widget>();
   },
   child: Text(
     item,
-  style: Theme.of(context).textTheme.display1,
+  style: TextStyle(
+    fontFamily: 'Merriweather',
+    fontSize: 15.0,
+    color: const Color(0xFF807A6B),
+    decoration: TextDecoration.underline,
+  ),
   ),
 ),
         
@@ -118,7 +123,6 @@ List<Widget> getUpdatedDetails(position)
 
   @override
   Widget build(BuildContext context) {
-
     return ListView(
       padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 75.0),
       children: _content,
@@ -201,20 +205,20 @@ class _DetailScreenState extends State<DetailScreen>
           controller: _tabController,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          updateFavorites(appState.user.uid, widget.law.id).then((result) {
-            // Toggle "in favorites" if the result was successful.
-            if (result) _toggleInFavorites();
-          });
-        },
-        child: Icon(
-          _inFavorites ? Icons.favorite : Icons.favorite_border,
-          color: Theme.of(context).iconTheme.color,
-        ),
-        elevation: 2.0,
-        backgroundColor: Colors.white,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     updateFavorites(appState.user.uid, widget.law.id).then((result) {
+      //       // Toggle "in favorites" if the result was successful.
+      //       if (result) _toggleInFavorites();
+      //     });
+      //   },
+      //   child: Icon(
+      //     _inFavorites ? Icons.favorite : Icons.favorite_border,
+      //     color: Theme.of(context).iconTheme.color,
+      //   ),
+      //   elevation: 2.0,
+      //   backgroundColor: Colors.white,
+      // ),
     );
   }
 }

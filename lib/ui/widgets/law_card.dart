@@ -67,11 +67,11 @@ class LawCard extends StatelessWidget {
               Stack(
                 children: <Widget>[
                   LawImage(law.imageURL),
-                  Positioned(
-                    child: _buildFavoriteButton(),
-                    top: 2.0,
-                    right: 2.0,
-                  ),
+                  // Positioned(
+                  //   child: _buildFavoriteButton(),
+                  //   top: 2.0,
+                  //   right: 2.0,
+                  // ),
                 ],
               ),
               _buildTitleSection(),
