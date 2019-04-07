@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:law_app/model/comment.dart';
+import 'package:law_app/model/state.dart';
 
 Future<bool> updateFavorites(String uid, String recipeId) {
   DocumentReference favoritesReference =
@@ -25,6 +27,23 @@ Future<bool> updateFavorites(String uid, String recipeId) {
         'favorites': [recipeId]
       });
     }
+  }).then((result) {
+    return true;
+  }).catchError((error) {
+    print('Error: $error');
+    return false;
+  });
+}
+
+Future<bool> insertComment(String content, String user,String date) {
+final commentReference = Firestore.instance.collection('comments');
+Comment commentToSend = new Comment (
+  user:user,
+  content:content,
+  date:date
+);
+return Firestore.instance.runTransaction((Transaction tx) async {
+   await commentReference.add(commentToSend.toJson());
   }).then((result) {
     return true;
   }).catchError((error) {

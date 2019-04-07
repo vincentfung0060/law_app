@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:law_app/model/comment.dart';
 import 'package:law_app/model/law.dart';
 import 'package:law_app/model/state.dart';
 import 'package:law_app/state_widget.dart';
 import 'package:law_app/ui/screens/login.dart';
+import 'package:law_app/ui/widgets/comment_card.dart';
+import 'package:law_app/ui/widgets/comment_send_box.dart';
 import 'package:law_app/ui/widgets/law_card.dart';
 import 'package:law_app/ui/widgets/settings_button.dart';
 import 'package:law_app/utils/store.dart';
@@ -31,6 +34,7 @@ class HomeScreenState extends State<HomeScreen> {
               labelColor: Theme.of(context).indicatorColor,
               tabs: [
                 Tab(icon: Icon(Icons.apps, size: _iconSize)),
+                Tab(icon: Icon(Icons.comment, size: _iconSize)),
                 // Tab(icon: Icon(Icons.favorite, size: _iconSize)),
                 Tab(icon: Icon(Icons.settings, size: _iconSize)),
               ],
@@ -105,9 +109,50 @@ class HomeScreenState extends State<HomeScreen> {
       );
     }
 
+Padding _buildComments({List<String> ids}) {
+      CollectionReference collectionReference =
+          Firestore.instance.collection('comments');
+      Stream<QuerySnapshot> stream;
+      stream = collectionReference.snapshots();
+      // Define query depeneding on passed args
+      return Padding(
+        // Padding before and after the list view:
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex:4,
+              child: new StreamBuilder(
+                stream: stream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) return _buildLoadingIndicator();
+                  return new ListView(
+                    children: snapshot.data.documents
+                        // Check if the argument ids contains document ID if ids has been passed:
+                        .map((document) {
+                      return new CommentCard(
+                        comment:
+                            Comment.fromMap(document.data, document.documentID),
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
+            ),
+            Expanded(
+            flex: 1,
+            child: new CommentSendBox(),
+            )
+          ],
+        ),
+      );
+    }
+
     return TabBarView(
       children: [
         _buildLaws(),
+        _buildComments(),
         // _buildLaws(ids: appState.favorites),
         _buildSettings(),
       ],
