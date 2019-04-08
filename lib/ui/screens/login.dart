@@ -9,19 +9,19 @@ class LoginScreen extends StatelessWidget {
     BoxDecoration _buildBackground() {
       return BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/login_background.jpg"),
-          fit: BoxFit.cover,
+          image: AssetImage("assets/hear4You.jpg"),
+          fit: BoxFit.fitWidth,
         ),
       );
     }
 
-    Text _buildText() {
-      return Text(
-        'Law Consultation',
-        style: Theme.of(context).textTheme.headline,
-        textAlign: TextAlign.center,
-      );
-    }
+    //Text _buildText() {
+    //  return Text(
+    //    'HEAR 4 YOU',
+    //    style: Theme.of(context).textTheme.headline,
+    //    textAlign: TextAlign.center,
+    //  );
+    //}
 
     return Scaffold(
       // We do not use backgroundColor property anymore.
@@ -32,8 +32,8 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _buildText(),
-              SizedBox(height: 50.0),
+             // _buildText(),
+              SizedBox(height: 500.0),
               GoogleSignInButton(
                 onPressed: () =>
                    // We replace the current page.

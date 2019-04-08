@@ -9,7 +9,7 @@ class LawApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Law Consultation',
+      title: 'HEAR 4 YOU',
       theme: buildTheme(),
       routes: {
         '/': (context) => HomeScreen(),
