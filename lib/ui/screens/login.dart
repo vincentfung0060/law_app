@@ -8,8 +8,9 @@ class LoginScreen extends StatelessWidget {
     // New private method which includes the background image:
     BoxDecoration _buildBackground() {
       return BoxDecoration(
+        color: Colors.white,
         image: DecorationImage(
-          image: AssetImage("assets/hear4You.jpg"),
+          image: AssetImage("assets/CARE.jpeg"),
           fit: BoxFit.fitWidth,
         ),
       );

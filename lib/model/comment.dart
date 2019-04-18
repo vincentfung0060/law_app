@@ -14,7 +14,7 @@ class Comment {
   Comment.fromMap(Map<String, dynamic> data, String id)
       : this(
           id: id,
-          user: data['user'],    
+          user: data['user'],
           content: data['content'], 
           date: data['date'], 
         );

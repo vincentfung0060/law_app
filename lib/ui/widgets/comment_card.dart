@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:law_app/model/comment.dart';
+import 'package:law_app/ui/screens/home.dart' as home; 
 
 class CommentCard extends StatelessWidget {
   final Comment comment;
@@ -13,6 +14,12 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Padding _buildTitleSection() {
+      String _text;
+            if (home.isAnonymous == true) {
+        _text = "****";
+      } 
+      else { _text = comment.user;}
+
       return Padding(
         padding: EdgeInsets.all(15.0),
         child: Column(
@@ -21,7 +28,7 @@ class CommentCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "From:   " + comment.user,
+              "From:   " + _text,
               style: Theme.of(context).textTheme.title,
             ),
           ],

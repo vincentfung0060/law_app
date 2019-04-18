@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
   State<StatefulWidget> createState() => new HomeScreenState();
 }
 
+bool isAnonymous = false;
+
 class HomeScreenState extends State<HomeScreen> {
   StateModel appState;
 
@@ -38,7 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
                 // Tab(icon: Icon(Icons.favorite, size: _iconSize)),
                 Tab(icon: Icon(Icons.settings, size: _iconSize)),
               ],
-            ),  
+            ),
           ),
         ),
         body: Padding(
@@ -93,8 +95,7 @@ class HomeScreenState extends State<HomeScreen> {
                         .where((d) => ids == null || ids.contains(d.documentID))
                         .map((document) {
                       return new LawCard(
-                        law:
-                            Law.fromMap(document.data, document.documentID),
+                        law: Law.fromMap(document.data, document.documentID),
                         inFavorites:
                             appState.favorites.contains(document.documentID),
                         onFavoriteButtonPressed: _handleFavoritesListChanged,
@@ -109,7 +110,7 @@ class HomeScreenState extends State<HomeScreen> {
       );
     }
 
-Padding _buildComments({List<String> ids}) {
+    Padding _buildComments({List<String> ids}) {
       CollectionReference collectionReference =
           Firestore.instance.collection('comments');
       Stream<QuerySnapshot> stream;
@@ -121,7 +122,7 @@ Padding _buildComments({List<String> ids}) {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex:4,
+              flex: 4,
               child: new StreamBuilder(
                 stream: stream,
                 builder: (BuildContext context,
@@ -141,8 +142,8 @@ Padding _buildComments({List<String> ids}) {
               ),
             ),
             Expanded(
-            flex: 1,
-            child: new CommentSendBox(),
+              flex: 1,
+              child: new CommentSendBox(),
             )
           ],
         ),
@@ -159,10 +160,21 @@ Padding _buildComments({List<String> ids}) {
     );
   }
 
-Column _buildSettings() {
+  Column _buildSettings() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        Row(children: [
+          Switch(
+            value: isAnonymous,
+            onChanged: (value) {
+              setState(() {
+                isAnonymous = value;
+              });
+            },
+          ),
+          Text("Anonymous")
+        ]),
         SettingsButton(
           Icons.exit_to_app,
           "Log out",
@@ -170,11 +182,11 @@ Column _buildSettings() {
           () async {
             await StateWidget.of(context).signOutOfGoogle();
           },
-        ),
+        )
       ],
     );
   }
-  
+
   // Inactive widgets are going to call this method to
   // signalize the parent widget HomeScreen to refresh the list view:
   void _handleFavoritesListChanged(String recipeID) {
