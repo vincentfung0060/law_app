@@ -16,7 +16,7 @@ class CommentCard extends StatelessWidget {
     Padding _buildTitleSection() {
       String _text;
             if (home.isAnonymous == true) {
-        _text = "****";
+        _text = "******";
       } 
       else { _text = comment.user;}
 

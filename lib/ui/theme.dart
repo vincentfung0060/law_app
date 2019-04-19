@@ -14,7 +14,8 @@ ThemeData buildTheme() {
       // Used for the laws' title:
       title: base.title.copyWith(
         fontFamily: 'Merriweather',
-        fontSize: 15.0,
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
         color: const Color(0xFF807A6B),
       ),
       display1: base.display1.copyWith(
@@ -32,7 +33,7 @@ ThemeData buildTheme() {
   // And apply changes on it:
   return base.copyWith(
     textTheme: _buildTextTheme(base.textTheme),
-    primaryColor: const Color(0xFFFFF8E1),
+    primaryColor: const Color(0xFFFFFFFF),
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     accentColor: const Color(0xFFFFF8E1),

@@ -27,6 +27,7 @@ class HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: Color(0xFFFFFFFF),
         appBar: PreferredSize(
           // We set Size equal to passed height (50.0) and infinite width:
           preferredSize: Size.fromHeight(50.0),
@@ -44,7 +45,7 @@ class HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.all(5.0),
+          padding: EdgeInsets.all(0.0),
           child: body,
         ),
       ),
@@ -80,7 +81,7 @@ class HomeScreenState extends State<HomeScreen> {
       // Define query depeneding on passed args
       return Padding(
         // Padding before and after the list view:
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -173,7 +174,7 @@ class HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-          Text("Anonymous")
+          Text("Comment Anonymously", style: TextStyle(fontSize: 17.0, color: Color(0xFF807a6b)),)
         ]),
         SettingsButton(
           Icons.exit_to_app,
