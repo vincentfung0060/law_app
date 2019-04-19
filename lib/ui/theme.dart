@@ -6,21 +6,21 @@ ThemeData buildTheme() {
   TextTheme _buildTextTheme(TextTheme base) {
     return base.copyWith(
       headline: base.headline.copyWith(
-        fontFamily: 'Merriweather',
+        fontFamily: 'Calibri',
         fontSize: 40.0,
         color: const Color(0xFFFFFFFF),
       ),
       // New code:
       // Used for the laws' title:
       title: base.title.copyWith(
-        fontFamily: 'Merriweather',
+        fontFamily: 'Calibri',
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
         color: const Color(0xFF807A6B),
       ),
       display1: base.display1.copyWith(
-        fontFamily: 'Merriweather',
-        fontSize: 15.0,
+        fontFamily: 'Calibri',
+        fontSize: 18.0,
         color: const Color(0xFF807A6B),
         decoration: TextDecoration.underline,
       ),
@@ -33,7 +33,7 @@ ThemeData buildTheme() {
   // And apply changes on it:
   return base.copyWith(
     textTheme: _buildTextTheme(base.textTheme),
-    primaryColor: const Color(0xFFFFFFFF),
+    primaryColor: const Color(0xFFFFF8E1),
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     accentColor: const Color(0xFFFFF8E1),

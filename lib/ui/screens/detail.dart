@@ -74,8 +74,8 @@ class _ContentViewState extends State<ContentView> {
               child: Text(
                 item,
                 style: TextStyle(
-                  fontFamily: 'Merriweather',
-                  fontSize: 16.0,
+                  fontFamily: 'Calibri',
+                  fontSize: 17.0,
                   color: const Color(0xFF807A6B),
                   //decoration: TextDecoration.underline,
                 ),
@@ -110,7 +110,7 @@ class _ContentViewState extends State<ContentView> {
           padding: new EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0.0),
           child: Text(i,
             style: TextStyle(
-              fontFamily: 'Merriweather',
+              fontFamily: 'Calibri',
               fontSize: 16.0,
               color: const Color(0xFF807A6B),
             ),
@@ -207,8 +207,8 @@ class _DetailScreenState extends State<DetailScreen>
     appState = StateWidget.of(context).state;
 
     return Scaffold(
-      //backgroundColor: colors[],
-      //backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
+      //backgroundColor: Colors[],
       body: NestedScrollView(
         controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerViewIsScrolled) {

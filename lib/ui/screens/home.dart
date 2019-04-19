@@ -174,7 +174,10 @@ class HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-          Text("Comment Anonymously", style: TextStyle(fontSize: 17.0, color: Color(0xFF807a6b)),)
+          Text(
+            "Comment Anonymously",
+            style: TextStyle(fontSize: 17.0, color: Color(0xFF807a6b)),
+          )
         ]),
         SettingsButton(
           Icons.exit_to_app,
@@ -183,7 +186,19 @@ class HomeScreenState extends State<HomeScreen> {
           () async {
             await StateWidget.of(context).signOutOfGoogle();
           },
-        )
+        ),
+        Container(
+            padding: new EdgeInsets.all(25.0),
+            child: Column(
+              children: <Widget>[
+                Text("Disclaimer", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                    "In all cases it is advisable to consult solicitors who are experienced in dealing with accident compensation claims, and they will advise whether or not your intended claims have any merit, that is, whether or not there are reasonable grounds for your claim. Your solicitor will be able to organise your evidence in order to present it to the party being held responsible and their insurers. Please note that if records of the accident have not been properly kept, or are incomplete, this can be a big drawback in substantiating your claim.")
+              ],
+            ))
       ],
     );
   }

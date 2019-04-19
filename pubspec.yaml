@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.2.2+1
+version: 1.2.3+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -63,6 +63,9 @@ flutter:
     - family: Merriweather
       fonts:
         - asset: fonts/Merriweather-Regular.ttf
+    - family: Calibri
+      fonts:
+        - asset: fonts/Calibri.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
