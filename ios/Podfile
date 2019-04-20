@@ -64,6 +64,8 @@ target 'Runner' do
   }
 end
 
+pod 'Firebase/Firestore'
+pod 'Firebase/Performance'
 pod 'Firebase/Core'
 pod 'GoogleSignIn'
 use_frameworks!

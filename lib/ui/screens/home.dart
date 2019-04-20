@@ -163,8 +163,12 @@ class HomeScreenState extends State<HomeScreen> {
 
   Column _buildSettings() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
+        SizedBox(
+          height: 15.0,
+        ),
         Row(children: [
           Switch(
             value: isAnonymous,
@@ -190,6 +194,8 @@ class HomeScreenState extends State<HomeScreen> {
         Container(
             padding: new EdgeInsets.all(25.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text("Disclaimer", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
                 SizedBox(

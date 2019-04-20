@@ -15,7 +15,39 @@
       },
       "oauth_client": [
         {
-          "client_id": "712681179527-84n6ckpubd9j2i8mau39342jo0gefreb.apps.googleusercontent.com",
+          "client_id": "712681179527-4n4lva5mtu37nds4d4vamjc4q3n3bi1f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.law_app",
+            "certificate_hash": "785776ef1be7071ceef027c5e78d607a5ebf0bdf"
+          }
+        },
+        {
+          "client_id": "712681179527-rld98kpe1ihlgki3bsekrmih7duefpgm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.law_app",
+            "certificate_hash": "3e6aad4258e129b66d1690632828963cb1d10199"
+          }
+        },
+        {
+          "client_id": "712681179527-piijqf36l4ak0s97vm4lpgjp90rfudif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.law_app",
+            "certificate_hash": "577cd083b9a87a80642d27ca692789ddafccef58"
+          }
+        },
+        {
+          "client_id": "712681179527-0b9upkvr22ha6dnm69to56c8ph6ehb6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.law_app",
+            "certificate_hash": "54fe3c2c2c4dd47cb4b06e0a45aa0796e014b9ec"
+          }
+        },
+        {
+          "client_id": "712681179527-89srlfm7548hdlnfs34m1im5itei9k5n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -25,15 +57,56 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712681179527-89srlfm7548hdlnfs34m1im5itei9k5n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "712681179527-7bf2dvoqm3quli7tiv5bdhic2ll2vknh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lawApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712681179527:android:daa20eaf1e28d4ac",
+        "android_client_info": {
+          "package_name": "io.app.care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712681179527-89srlfm7548hdlnfs34m1im5itei9k5n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAujcOe1QBvnAibaW2nAn6JG0x7i3Z0oIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712681179527-89srlfm7548hdlnfs34m1im5itei9k5n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "712681179527-7bf2dvoqm3quli7tiv5bdhic2ll2vknh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lawApp"
+              }
+            }
+          ]
         }
       }
     }
